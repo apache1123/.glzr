@@ -1,0 +1,490 @@
+# Yaml is white-space sensitive (use 2 spaces to indent).
+
+###
+# Define a new window with an id of 'bar'. This window can then be opened
+# via the Zebar cli by running 'zebar open bar --args <ARGS...>'.
+#
+# Docs regarding window: https://some-future-docs-link.com
+window/bar:
+  providers: ['self']
+  # Width of the window in physical pixels.
+  width: '{{ self.args.MONITOR_WIDTH }}'
+  # Height of the window in physical pixels.
+  height: '40'
+  # X-position of the window in physical pixels.
+  position_x: '{{ self.args.MONITOR_X }}'
+  # Y-position of the window in physical pixels.
+  position_y: '{{ self.args.MONITOR_Y }}'
+  # Whether to show the window above/below all others.
+  # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
+  z_order: 'normal'
+  # Whether the window should be shown in the taskbar.
+  shown_in_taskbar: false
+  # Whether the window should have resize handles.
+  resizable: false
+  # Styles to apply globally within the window. For example, we can use
+  # this to import the Nerdfonts icon font. Ref https://www.nerdfonts.com/cheat-sheet
+  # for a cheatsheet of available Nerdfonts icons.
+  global_styles: |
+    @import "https://www.nerdfonts.com/assets/css/webfont.css";
+  # CSS styles to apply to the root element within the window. Using CSS
+  # nesting, we can also target nested elements (e.g. below we set the
+  # color and margin-right of icons).
+
+  # catppuccin frappe colors
+  styles: |
+    --rosewater: hsl(10, 57%, 88%);
+    --flamingo: hsl(0, 59%, 84%);
+    --mauve: hsl(277, 59%, 76%);
+    --red: hsl(359, 68%, 71%);
+    --peach: hsl(20, 79%, 70%);
+    --yellow: hsl(40, 62%, 73%);
+    --green: hsl(96, 44%, 68%);
+    --teal: hsl(172, 39%, 65%);
+    --sapphire: hsl(199, 55%, 69%);
+    --blue: hsl(222, 74%, 74%);
+    --lavender: hsl(239, 66%, 84%);
+    --text: hsl(227, 70%, 87%);
+    --overlay-2: hsl(228, 22%, 66%);
+    --overlay-0: hsl(229, 13%, 52%);
+    --surface-0: hsl(230, 16%, 30%);
+    --base: hsl(229, 19%, 23%);
+    --mantle: hsl(231, 19%, 20%);
+    --crust: hsl(229, 20%, 17%);
+    --text-dark: var(--crust);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: 100%;
+    color: var(--text);
+    font-family: 'Ubuntu', 'Noto Sans', 'Segoe UI', monospace;
+    font-size: 13px;
+    padding: 4px 30px;
+    border-bottom: 1px solid var(--crust);
+    background: color-mix(in hsl, var(--mantle) 92%, transparent);
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+  group/left:
+    styles: |
+      .template {
+        display: flex;
+        align-items: center;
+      }
+
+      .template:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      .template:hover .bar-outline {
+        opacity: 0;
+        transform: translateY(200%);
+      }
+      .template:hover .bar-value {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+
+      .status-item {
+        display: flex;
+        align-items: center; 
+      }
+
+      .status-item i {
+        margin-right: 7px;
+      }
+
+      .bar-wrapper {
+        width: 40px;
+        display: flex;
+        align-items: center;
+      }
+
+      .bar-outline {
+        width: 100%;
+        height: 10px;
+        border: 1px solid var(--surface-0);
+        border-radius: 10px 10px;
+        background-color: var(--surface-0); 
+        opacity: 1;
+        transform: translateY(0%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .bar {
+        height: 100%;
+        width: 0; 
+        border-radius: 10px 10px;
+        background-color: var(--overlay-0);
+      }
+
+      .bar-value {
+        position: absolute;
+        cursor: default;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      --high-usage: var(--red);
+      .high-usage {
+        color: var(--high-usage); 
+      }
+      .high-usage .bar {
+        background-color: var(--high-usage); 
+      }
+
+    template/cpu:
+      providers: ['cpu']
+      styles: |
+        --cpu: var(--flamingo);
+
+        color: var(--cpu);
+        .bar {
+          background-color: var(--cpu); 
+        }
+
+      template: |
+        <div class="status-item @if (cpu.usage > 85) { high-usage }">
+          <i class="nf nf-oct-cpu"></i>
+
+          <div class="bar-wrapper">
+            <div class="bar-outline">
+              <div class="bar" style="width:{{ Math.round(cpu.usage) }}%"></div>
+            </div>
+            <div class="bar-value">{{ Math.round(cpu.usage) }}%</div>
+          </div>
+        </div>
+
+    template/memory:
+      providers: ['memory']
+      styles: |
+        --memory: var(--teal);
+
+        color: var(--memory);
+        .bar {
+          background-color: var(--memory); 
+        }
+
+      template: |
+        <div class="status-item @if (memory.usage > 85) { high-usage }">
+          <i class="nf nf-fae-chip"></i>
+
+          <div class="bar-wrapper">
+            <div class="bar-outline">
+              <div class="bar" style="width:{{ Math.round(memory.usage) }}%"></div>
+            </div>
+            <div class="bar-value">{{ Math.round(memory.usage) }}%</div>
+          </div>
+        </div>
+
+    template/battery:
+      providers: ['battery']
+      styles: |
+        position: relative;
+
+        .charging-icon {
+          position: absolute;
+          font-size: 11px;
+          left: 7px;
+          top: 2px;
+        }
+      template: |
+        <!-- Show icon for whether battery is charging. -->
+        @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
+
+        <!-- Show icon for how much of the battery is charged. -->
+        @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
+        @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
+        @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
+        @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
+        @else {<i class="nf nf-fa-battery_0"></i>}
+
+        {{ Math.round(battery.chargePercent) }}%
+
+    template/network:
+      providers: ['network', 'util']
+      styles: |
+        --network: var(--lavender);
+
+        color: var(--network);
+        .bar {
+          background-color: var(--network); 
+        }
+
+        .bar-group {
+          width: 65px;
+          display: flex;
+          align-items: center; 
+          font-size: 0.6rem;
+        }
+
+        .bar-group .bar-wrapper {
+          width: 30px; 
+        }
+
+        .bar-group .bar-wrapper:not(:first-child) {
+          margin-left: 5px; 
+        }
+
+        .bar-group:hover .bar-outline {
+          display: none; 
+        }
+        .bar-group:hover .bar-value {
+          display: block; 
+        }
+
+      template: |
+        <div class="status-item">
+          <!-- Show icon based on signal strength. -->
+          @if (network.defaultInterface?.type === 'ethernet') {
+            <i class="nf nf-md-ethernet_cable"></i>
+          } @else if (network.defaultInterface?.type === 'wifi') {
+            @if (network.defaultGateway?.signalStrength >= 80) {<i class="nf nf-md-wifi_strength_4"></i>}
+            @else if (network.defaultGateway?.signalStrength >= 65) {<i class="nf nf-md-wifi_strength_3"></i>}
+            @else if (network.defaultGateway?.signalStrength >= 40) {<i class="nf nf-md-wifi_strength_2"></i>}
+            @else if (network.defaultGateway?.signalStrength >= 25) {<i class="nf nf-md-wifi_strength_1"></i>}
+            @else {<i class="nf nf-md-wifi_strength_outline"></i>}
+          } @else {
+            <i class="nf nf-md-wifi_strength_off_outline"></i>
+          }
+
+          <div class="bar-group">
+            <div class="bar-wrapper">
+              <div class="bar-outline">
+
+                <!-- show as a portion of approx. max download speed (40MBps) -->
+                <div class="bar" style="width:{{ Math.min(network.traffic.received / 40000000 * 100, 100) }}%"></div>
+              </div>
+
+              <div class="bar-value">
+                {{ util.convertBytes(network.traffic.received, 0, 'si_bytes') }}
+              </div>
+            </div>
+
+            <div class="bar-wrapper">
+              <div class="bar-outline">
+                
+                <!-- show as a portion of approx. max upload speed (13MBps) -->
+                <div class="bar" style="width:{{ Math.min(network.traffic.transmitted / 13000000 * 100, 100) }}%"></div>
+              </div>
+
+              <div class="bar-value">
+                {{ util.convertBytes(network.traffic.transmitted, 0, 'si_bytes') }}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+  group/center:
+    styles: |
+      justify-self: center;
+
+    template/glazewm_workspaces:
+      styles: |
+        display: flex;
+        align-items: center;
+
+        .workspace {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: var(--surface-0);
+          color: var(--text);
+          width: 28px;
+          height: 22px;
+          margin-right: 4px;
+          border: none;
+          border-radius: 2px;
+          cursor: pointer;
+
+          &.displayed {
+            background: var(--overlay-2);
+            color: var(--text-dark);
+          }
+
+          &.focused,
+          &:hover {
+            background: var(--mauve);
+            color: var(--text-dark);
+          }
+        }
+      providers: ['glazewm']
+      events:
+        - type: 'click'
+          fn_path: 'script.js#focusWorkspace'
+          selector: '.workspace'
+      template: |
+        @for (workspace of glazewm.currentWorkspaces) {
+          <button
+            class="workspace {{ workspace.hasFocus ? 'focused' : '' }} {{ workspace.isDisplayed ? 'displayed' : '' }}"
+            id="{{ workspace.name }}"
+          >
+            @if (workspace.hasFocus || workspace.isDisplayed) {
+              <i class="nf nf-cod-octoface"></i>
+            } @else {
+              {{ workspace.displayName ?? workspace.name }}
+            }
+          </button>
+        }
+
+  group/right:
+    styles: |
+      justify-self: end;
+
+      .template {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .status-item {
+        display: flex;
+        align-items: center; 
+      }
+
+      .status-item i {
+        margin-right: 7px;
+      }
+
+    template/glazewm_other:
+      providers: ['glazewm']
+      styles: |
+        .binding-mode,
+        .tiling-direction {
+          background: var(--base);
+          color: var(--text);
+          border-radius: 2px;
+          padding: 4px 6px;
+          margin: 0;
+        }
+
+      template: |
+        @for (bindingMode of glazewm.bindingModes) {
+          <span class="binding-mode">
+            {{ bindingMode.displayName ?? bindingMode.name }}
+          </span>
+        }
+
+        @if (glazewm.tilingDirection === 'horizontal') {
+          <i class="tiling-direction nf nf-md-swap_horizontal"></i>
+        } @else {
+          <i class="tiling-direction nf nf-md-swap_vertical"></i>
+        }
+
+    template/battery:
+      providers: ['battery']
+      styles: |
+        position: relative;
+
+        .charging-icon {
+          position: absolute;
+          font-size: 11px;
+          left: 7px;
+          top: 2px;
+        }
+      template: |
+        <!-- Show icon for whether battery is charging. -->
+        @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
+
+        <!-- Show icon for how much of the battery is charged. -->
+        @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
+        @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
+        @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
+        @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
+        @else {<i class="nf nf-fa-battery_0"></i>}
+
+        {{ Math.round(battery.chargePercent) }}%
+
+    template/weather:
+      providers: ['weather']
+      styles: |
+        .no-rain { color: var(--yellow); }
+        .rain { color: var(--blue); }
+
+      template: |
+        <div class="status-item">
+          @switch (weather.status) {
+            @case ('clear_day') {
+              <div class="no-rain">
+                <i class="nf nf-weather-day_sunny"></i>
+            }
+            @case ('clear_night') {
+              <div class="no-rain">
+                <i class="nf nf-weather-night_clear"></i>
+            }
+            @case ('cloudy_day') {
+              <div class="no-rain">
+                <i class="nf nf-weather-day_cloudy"></i>
+            }
+            @case ('cloudy_night') {
+              <div class="no-rain">
+                <i class="nf nf-weather-night_alt_cloudy"></i>
+            }
+            @case ('light_rain_day') {
+              <div class="rain">
+                <i class="nf nf-weather-day_sprinkle"></i>
+            }
+            @case ('light_rain_night') {
+              <div class="rain">
+                <i class="nf nf-weather-night_alt_sprinkle"></i>
+            }
+            @case ('heavy_rain_day') {
+              <div class="rain">
+                <i class="nf nf-weather-day_rain"></i>
+            }
+            @case ('heavy_rain_night') {
+              <div class="rain">
+                <i class="nf nf-weather-night_alt_rain"></i>
+            }
+            @case ('snow_day') {
+              <div class="rain">
+                <i class="nf nf-weather-day_snow"></i>
+            }
+            @case ('snow_night') {
+              <div class="rain">
+                <i class="nf nf-weather-night_alt_snow"></i>
+            }
+            @case ('thunder_day') {
+              <div class="rain">
+                <i class="nf nf-weather-day_lightning"></i>
+            }
+            @case ('thunder_night') {
+              <div class="rain">
+                <i class="nf nf-weather-night_alt_lightning"></i>
+            }
+          }
+            {{ weather.celsiusTemp }}°
+          </div>
+        </div>
+
+    template/date-time:
+      providers: ['date']
+      styles: |
+        word-spacing: 1px;
+
+        #date, #time {
+          display: flex;
+          align-items: center; 
+        }
+
+        #time {
+          margin-left: 15px; 
+        }
+      # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
+      template: |
+        <div class="status-item">
+          <div id="date">
+            <i class="nf nf-md-calendar_blank"></i>
+            <span>{{ date.toFormat(date.now, 'EEE d MMM') }}</span>
+          </div>
+          <div id="time">
+            <i class="nf nf-fa-clock"></i>
+            <span>{{ date.toFormat(date.now, 't') }}</span>
+          </div>
+        </div>
