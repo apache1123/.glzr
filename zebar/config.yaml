@@ -8,9 +8,9 @@
 window/bar:
   providers: ['self']
   # Width of the window in physical pixels.
-  width: '{{ self.args.MONITOR_WIDTH }}'
+  width: '50'
   # Height of the window in physical pixels.
-  height: '40'
+  height: '{{ self.args.MONITOR_HEIGHT }}'
   # X-position of the window in physical pixels.
   position_x: '{{ self.args.MONITOR_X }}'
   # Y-position of the window in physical pixels.
@@ -53,31 +53,34 @@ window/bar:
     --crust: hsl(229, 20%, 17%);
     --text-dark: var(--crust);
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: var(--text);
     font-family: 'Ubuntu', 'Noto Sans', 'Segoe UI', monospace;
     font-size: 13px;
-    padding: 4px 30px;
-    border-bottom: 1px solid var(--crust);
-    background: color-mix(in hsl, var(--mantle) 92%, transparent);
+    padding: 30px 4px;
+    border-right: 1px solid var(--crust);
+    background: color-mix(in hsl, var(--mantle) 95%, transparent);
 
     > div {
+      flex: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
     }
 
-  group/left:
+  group/top:
     styles: |
       .template {
         display: flex;
+        flex-direction: column;
         align-items: center;
       }
 
       .template:not(:first-child) {
-        margin-left: 20px;
+        margin-top: 20px;
       }
 
       .template:hover .bar-outline {
@@ -91,16 +94,19 @@ window/bar:
 
       .status-item {
         display: flex;
+        flex-direction: column;
         align-items: center; 
       }
 
       .status-item i {
-        margin-right: 7px;
+        margin-bottom: 10px;
       }
 
       .bar-wrapper {
-        width: 40px;
+        width: 35px;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
       }
 
@@ -116,8 +122,8 @@ window/bar:
       }
 
       .bar {
-        height: 100%;
-        width: 0; 
+        width: 0;
+        height: 100%; 
         border-radius: 10px 10px;
         background-color: var(--overlay-0);
       }
@@ -182,29 +188,29 @@ window/bar:
           </div>
         </div>
 
-    template/battery:
-      providers: ['battery']
-      styles: |
-        position: relative;
+    # template/battery:
+    #   providers: ['battery']
+    #   styles: |
+    #     position: relative;
 
-        .charging-icon {
-          position: absolute;
-          font-size: 11px;
-          left: 7px;
-          top: 2px;
-        }
-      template: |
-        <!-- Show icon for whether battery is charging. -->
-        @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
+    #     .charging-icon {
+    #       position: absolute;
+    #       font-size: 11px;
+    #       left: 7px;
+    #       top: 2px;
+    #     }
+    #   template: |
+    #     <!-- Show icon for whether battery is charging. -->
+    #     @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
 
-        <!-- Show icon for how much of the battery is charged. -->
-        @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
-        @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
-        @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
-        @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
-        @else {<i class="nf nf-fa-battery_0"></i>}
+    #     <!-- Show icon for how much of the battery is charged. -->
+    #     @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
+    #     @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
+    #     @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
+    #     @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
+    #     @else {<i class="nf nf-fa-battery_0"></i>}
 
-        {{ Math.round(battery.chargePercent) }}%
+    #     {{ Math.round(battery.chargePercent) }}%
 
     template/network:
       providers: ['network', 'util']
@@ -217,25 +223,14 @@ window/bar:
         }
 
         .bar-group {
-          width: 65px;
           display: flex;
+          flex-direction: column;
           align-items: center; 
           font-size: 0.6rem;
         }
 
-        .bar-group .bar-wrapper {
-          width: 30px; 
-        }
-
         .bar-group .bar-wrapper:not(:first-child) {
-          margin-left: 5px; 
-        }
-
-        .bar-group:hover .bar-outline {
-          display: none; 
-        }
-        .bar-group:hover .bar-value {
-          display: block; 
+          margin-top: 10px; 
         }
 
       template: |
@@ -284,10 +279,12 @@ window/bar:
   group/center:
     styles: |
       justify-self: center;
+      justify-content: center;
 
     template/glazewm_workspaces:
       styles: |
         display: flex;
+        flex-direction: column;
         align-items: center;
 
         .workspace {
@@ -298,7 +295,7 @@ window/bar:
           color: var(--text);
           width: 28px;
           height: 22px;
-          margin-right: 4px;
+          margin-bottom: 4px;
           border: none;
           border-radius: 2px;
           cursor: pointer;
@@ -333,23 +330,25 @@ window/bar:
           </button>
         }
 
-  group/right:
+  group/bottom:
     styles: |
-      justify-self: end;
+      justify-content: end;
 
       .template {
-        margin-left: 20px;
+        margin-top: 20px;
         display: flex;
+        flex-direction: column;
         align-items: center;
       }
 
       .status-item {
         display: flex;
+        flex-direction: column;
         align-items: center; 
       }
 
       .status-item i {
-        margin-right: 7px;
+        margin-bottom: 7px;
       }
 
     template/glazewm_other:
@@ -360,7 +359,7 @@ window/bar:
           background: var(--base);
           color: var(--text);
           border-radius: 2px;
-          padding: 4px 6px;
+          padding: 6px 4px;
           margin: 0;
         }
 
@@ -377,33 +376,39 @@ window/bar:
           <i class="tiling-direction nf nf-md-swap_vertical"></i>
         }
 
-    template/battery:
-      providers: ['battery']
-      styles: |
-        position: relative;
+    # template/battery:
+    #   providers: ['battery']
+    #   styles: |
+    #     position: relative;
 
-        .charging-icon {
-          position: absolute;
-          font-size: 11px;
-          left: 7px;
-          top: 2px;
-        }
-      template: |
-        <!-- Show icon for whether battery is charging. -->
-        @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
+    #     .charging-icon {
+    #       position: absolute;
+    #       font-size: 11px;
+    #       left: 7px;
+    #       top: 2px;
+    #     }
+    #   template: |
+    #     <!-- Show icon for whether battery is charging. -->
+    #     @if (battery.isCharging) {<i class="nf nf-md-power_plug charging-icon"></i>}
 
-        <!-- Show icon for how much of the battery is charged. -->
-        @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
-        @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
-        @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
-        @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
-        @else {<i class="nf nf-fa-battery_0"></i>}
+    #     <!-- Show icon for how much of the battery is charged. -->
+    #     @if (battery.chargePercent > 90) {<i class="nf nf-fa-battery_4"></i>}
+    #     @else if (battery.chargePercent > 70) {<i class="nf nf-fa-battery_3"></i>}
+    #     @else if (battery.chargePercent > 40) {<i class="nf nf-fa-battery_2"></i>}
+    #     @else if (battery.chargePercent > 20) {<i class="nf nf-fa-battery_1"></i>}
+    #     @else {<i class="nf nf-fa-battery_0"></i>}
 
-        {{ Math.round(battery.chargePercent) }}%
+    #     {{ Math.round(battery.chargePercent) }}%
 
     template/weather:
       providers: ['weather']
       styles: |
+        .rain, .no-rain {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
         .no-rain { color: var(--yellow); }
         .rain { color: var(--blue); }
 
@@ -470,21 +475,23 @@ window/bar:
 
         #date, #time {
           display: flex;
+          flex-direction: column;
           align-items: center; 
+          text-align: center;
         }
 
         #time {
-          margin-left: 15px; 
+          margin-top: 15px; 
+          font-size: 1.5em;
         }
       # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
       template: |
         <div class="status-item">
           <div id="date">
-            <i class="nf nf-md-calendar_blank"></i>
             <span>{{ date.toFormat(date.now, 'EEE d MMM') }}</span>
           </div>
           <div id="time">
-            <i class="nf nf-fa-clock"></i>
-            <span>{{ date.toFormat(date.now, 't') }}</span>
+            <span>{{ date.toFormat(date.now, 'HH') }}</span>
+            <span>{{ date.toFormat(date.now, 'mm') }}</span>
           </div>
         </div>
