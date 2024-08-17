@@ -293,12 +293,17 @@ window/bar:
           align-items: center;
           background: var(--surface-0);
           color: var(--text);
-          width: 28px;
-          height: 22px;
-          margin-bottom: 4px;
+          width: 25px;
+          height: 25px;
+          margin-bottom: 8px;
           border: none;
-          border-radius: 2px;
+          border-radius: 20px;
           cursor: pointer;
+          transition: all 0.3s ease;
+
+          &.displayed, &.focused, &:hover {
+            height: 40px; 
+          }
 
           &.displayed {
             background: var(--overlay-2);
