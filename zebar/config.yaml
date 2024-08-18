@@ -46,7 +46,10 @@ window/bar:
     --lavender: hsl(239, 66%, 84%);
     --text: hsl(227, 70%, 87%);
     --overlay-2: hsl(228, 22%, 66%);
+    --overlay-1: hsl(227, 17%, 58%);
     --overlay-0: hsl(229, 13%, 52%);
+    --surface-2: hsl(228, 13%, 44%);
+    --surface-1: hsl(227, 15%, 37%);
     --surface-0: hsl(230, 16%, 30%);
     --base: hsl(229, 19%, 23%);
     --mantle: hsl(231, 19%, 20%);
@@ -63,7 +66,7 @@ window/bar:
     user-select: none;
     padding: 30px 5px;
     border-right: 1px solid var(--crust);
-    background: color-mix(in hsl, var(--mantle) 98%, transparent);
+    background: color-mix(in hsl, var(--base) 95%, transparent);
 
     >.group {
       flex: 1;
@@ -75,7 +78,7 @@ window/bar:
 
     #pc-status, #irl-status {
       width: 100%;
-      background-color: var(--base);
+      background-color: var(--surface-0);
       padding: 12px 5px;
       border-radius: 14px;
     }
@@ -114,7 +117,7 @@ window/bar:
           }
 
           &.displayed {
-            background: var(--overlay-2);
+            background: var(--overlay-0);
             color: var(--text-dark);
           }
 
@@ -202,9 +205,9 @@ window/bar:
         .bar-outline {
           width: 100%;
           height: 10px;
-          border: 1px solid var(--surface-0);
+          border: 1px solid var(--surface-1);
           border-radius: 8px;
-          background-color: var(--surface-0); 
+          background-color: var(--surface-1); 
           opacity: 1;
           transform: translateY(0%);
           transition: transform 0.3s ease, opacity 0.3s ease;
