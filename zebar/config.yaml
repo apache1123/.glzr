@@ -481,6 +481,10 @@ window/bar:
             margin-top: 15px; 
             font-size: 1.6rem;
           }
+
+          #meridiem {
+            font-size: 0.8rem; 
+          }
         # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
         template: |
           <div class="status-item">
@@ -488,7 +492,8 @@ window/bar:
               <span>{{ date.toFormat(date.now, 'EEE d MMM') }}</span>
             </div>
             <div id="time">
-              <span>{{ date.toFormat(date.now, 'HH') }}</span>
+              <span>{{ date.toFormat(date.now, 'hh') }}</span>
               <span>{{ date.toFormat(date.now, 'mm') }}</span>
+              <span id="meridiem">{{ date.toFormat(date.now, 'a') }}</span>
             </div>
           </div>
