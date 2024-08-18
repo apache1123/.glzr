@@ -68,19 +68,22 @@ window/bar:
     border-right: 1px solid var(--crust);
     background: color-mix(in hsl, var(--base) 95%, transparent);
 
-    >.group {
-      flex: 1;
+    .group {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    #pc-status, #irl-status {
+    >.group {
+      flex: 1;
+    }
+
+    #irl-status {
       width: 100%;
-      background-color: var(--surface-0);
+      background-color: var(--mantle);
       padding: 12px 5px;
-      border-radius: 14px;
+      border-radius: 16px;
     }
 
   group/top:
@@ -174,6 +177,8 @@ window/bar:
 
     group/pc-status:
       styles: |
+        padding: 0 4px;
+
         .template {
           width: 100%;
           display: flex;
