@@ -79,17 +79,132 @@ window/bar:
       flex: 1;
     }
 
-    #irl-status {
+    .template {
       width: 100%;
-      background-color: var(--mantle);
-      padding: 12px 5px;
-      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .status-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+
+      i {
+        margin-bottom: 7px;
+      }
     }
 
   group/top:
-    template/blank:
-      template: |
-        <div></div>
+    group/irl-status:
+      styles: |
+        .template:not(:first-child) {
+          margin-top: 20px; 
+        }
+
+      template/date-time:
+        providers: ['date']
+        styles: |
+          #date, #time {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            text-align: center;
+          }
+
+          #time {
+            font-size: 1.8rem;
+          }
+
+          #meridiem {
+            font-size: 1rem; 
+          }
+
+          #date {
+            margin-top: 20px;          
+          }
+
+        # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
+        template: |
+          <div id="time">
+            <span>{{ date.toFormat(date.now, 'hh') }}</span>
+            <span>{{ date.toFormat(date.now, 'mm') }}</span>
+            <div id="meridiem">{{ date.toFormat(date.now, 'a') }}</div>
+          </div>
+          <div id="date">
+            <div>{{ date.toFormat(date.now, 'EEE') }}</div>
+            <div>{{ date.toFormat(date.now, 'd MMM') }}</div>
+          </div>
+
+      template/weather:
+        providers: ['weather']
+        styles: |
+          .rain, .no-rain {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .no-rain { color: var(--yellow); }
+          .rain { color: var(--blue); }
+
+        template: |
+          <div class="status-item">
+            @switch (weather.status) {
+              @case ('clear_day') {
+                <div class="no-rain">
+                  <i class="nf nf-weather-day_sunny"></i>
+              }
+              @case ('clear_night') {
+                <div class="no-rain">
+                  <i class="nf nf-weather-night_clear"></i>
+              }
+              @case ('cloudy_day') {
+                <div class="no-rain">
+                  <i class="nf nf-weather-day_cloudy"></i>
+              }
+              @case ('cloudy_night') {
+                <div class="no-rain">
+                  <i class="nf nf-weather-night_alt_cloudy"></i>
+              }
+              @case ('light_rain_day') {
+                <div class="rain">
+                  <i class="nf nf-weather-day_sprinkle"></i>
+              }
+              @case ('light_rain_night') {
+                <div class="rain">
+                  <i class="nf nf-weather-night_alt_sprinkle"></i>
+              }
+              @case ('heavy_rain_day') {
+                <div class="rain">
+                  <i class="nf nf-weather-day_rain"></i>
+              }
+              @case ('heavy_rain_night') {
+                <div class="rain">
+                  <i class="nf nf-weather-night_alt_rain"></i>
+              }
+              @case ('snow_day') {
+                <div class="rain">
+                  <i class="nf nf-weather-day_snow"></i>
+              }
+              @case ('snow_night') {
+                <div class="rain">
+                  <i class="nf nf-weather-night_alt_snow"></i>
+              }
+              @case ('thunder_day') {
+                <div class="rain">
+                  <i class="nf nf-weather-day_lightning"></i>
+              }
+              @case ('thunder_night') {
+                <div class="rain">
+                  <i class="nf nf-weather-night_alt_lightning"></i>
+              }
+            }
+              {{ weather.celsiusTemp }}°
+            </div>
+          </div>
 
   group/center:
     styles: |
@@ -100,6 +215,7 @@ window/bar:
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0 2px;
 
         .workspace {
           width: 100%;
@@ -116,7 +232,7 @@ window/bar:
           transition: all 0.3s ease;
 
           &.displayed, &.focused, &:hover {
-            height: 40px; 
+            height: 35px; 
           }
 
           &.displayed {
@@ -164,30 +280,12 @@ window/bar:
         align-items: center;
       }
 
-      .status-item {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-
-        i {
-          margin-bottom: 7px;
-        }
-      }
-
     group/pc-status:
       styles: |
-        padding: 0 4px;
-
-        .template {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
+        padding: 0 2px;
 
         .template:not(:first-child) {
-          margin-top: 15px;
+          margin-top: 20px;
         }
 
         .template:hover .bar-outline {
@@ -334,7 +432,6 @@ window/bar:
         providers: ['network', 'util']
         styles: |
           --network: var(--lavender);
-          margin-bottom: 5px;
 
           color: var(--network);
           .bar {
@@ -393,112 +490,5 @@ window/bar:
                 </div>
               </div>
 
-            </div>
-          </div>
-
-    group/irl-status:
-      styles: |
-        .template:not(:first-child) {
-          margin-top: 15px; 
-        }
-
-      template/weather:
-        providers: ['weather']
-        styles: |
-          .rain, .no-rain {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .no-rain { color: var(--yellow); }
-          .rain { color: var(--blue); }
-
-        template: |
-          <div class="status-item">
-            @switch (weather.status) {
-              @case ('clear_day') {
-                <div class="no-rain">
-                  <i class="nf nf-weather-day_sunny"></i>
-              }
-              @case ('clear_night') {
-                <div class="no-rain">
-                  <i class="nf nf-weather-night_clear"></i>
-              }
-              @case ('cloudy_day') {
-                <div class="no-rain">
-                  <i class="nf nf-weather-day_cloudy"></i>
-              }
-              @case ('cloudy_night') {
-                <div class="no-rain">
-                  <i class="nf nf-weather-night_alt_cloudy"></i>
-              }
-              @case ('light_rain_day') {
-                <div class="rain">
-                  <i class="nf nf-weather-day_sprinkle"></i>
-              }
-              @case ('light_rain_night') {
-                <div class="rain">
-                  <i class="nf nf-weather-night_alt_sprinkle"></i>
-              }
-              @case ('heavy_rain_day') {
-                <div class="rain">
-                  <i class="nf nf-weather-day_rain"></i>
-              }
-              @case ('heavy_rain_night') {
-                <div class="rain">
-                  <i class="nf nf-weather-night_alt_rain"></i>
-              }
-              @case ('snow_day') {
-                <div class="rain">
-                  <i class="nf nf-weather-day_snow"></i>
-              }
-              @case ('snow_night') {
-                <div class="rain">
-                  <i class="nf nf-weather-night_alt_snow"></i>
-              }
-              @case ('thunder_day') {
-                <div class="rain">
-                  <i class="nf nf-weather-day_lightning"></i>
-              }
-              @case ('thunder_night') {
-                <div class="rain">
-                  <i class="nf nf-weather-night_alt_lightning"></i>
-              }
-            }
-              {{ weather.celsiusTemp }}°
-            </div>
-          </div>
-
-      template/date-time:
-        providers: ['date']
-        styles: |
-          word-spacing: 1px;
-
-          #date, #time {
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            text-align: center;
-          }
-
-          #time {
-            margin-top: 15px; 
-            font-size: 1.6rem;
-          }
-
-          #meridiem {
-            font-size: 0.8rem; 
-          }
-        # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
-        template: |
-          <div class="status-item">
-            <div id="date">
-              <span>{{ date.toFormat(date.now, 'EEE d MMM') }}</span>
-            </div>
-            <div id="time">
-              <span>{{ date.toFormat(date.now, 'hh') }}</span>
-              <span>{{ date.toFormat(date.now, 'mm') }}</span>
-              <span id="meridiem">{{ date.toFormat(date.now, 'a') }}</span>
             </div>
           </div>
