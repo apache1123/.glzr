@@ -29,7 +29,7 @@ window/bar:
     @import "https://www.nerdfonts.com/assets/css/webfont.css";
 
     :root {
-      <!-- catppuccin frappe colors -->
+      /* catppuccin frappe colors */
       --rosewater: hsl(10, 57%, 88%);
       --flamingo: hsl(0, 59%, 84%);
       --mauve: hsl(277, 59%, 76%);
@@ -84,7 +84,12 @@ window/bar:
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      &:not(:first-child) {
+        margin-top: 20px; 
+      }
     }
+
 
     .status-item {
       width: 100%;
@@ -100,9 +105,6 @@ window/bar:
   group/top:
     group/irl-status:
       styles: |
-        .template:not(:first-child) {
-          margin-top: 20px; 
-        }
 
       template/date-time:
         providers: ['date']
@@ -210,6 +212,33 @@ window/bar:
     styles: |
       justify-content: center;
 
+    template/current-application:
+      providers: ['glazewm']
+      styles: |
+        #process-icon {
+          font-size: 1.8rem; 
+        }
+
+        /* for debugging */
+        #process-name { display: none; }
+      template: |
+        <i id="process-icon" class="nf 
+          @switch (glazewm.focusedContainer.processName) {
+            @case (undefined) { nf-custom-windows }
+            @case ('msedge') { nf-md-microsoft_edge }
+            @case ('Discord') { nf-fa-discord }
+            @case ('Code') { nf-md-microsoft_visual_studio_code }
+            @case ('Spotify') { nf-fa-spotify }
+            @case ('steamwebhelper') { nf-md-steam }
+            @case ('OneCommander') { nf-oct-file_directory }
+            @case ('stremio') { nf-md-movie }
+            @case ('mpvnet') { nf-linux-mpv }
+            @case ('QRSL') { nf-md-gamepad_variant }
+            @default { nf-md-application }
+          } 
+        "></i>
+        <div id="process-name">{{ glazewm.focusedContainer.processName }}</div>
+
     template/workspaces:
       styles: |
         display: flex;
@@ -283,10 +312,6 @@ window/bar:
     group/pc-status:
       styles: |
         padding: 0 2px;
-
-        .template:not(:first-child) {
-          margin-top: 20px;
-        }
 
         .template:hover .bar-outline {
           opacity: 0;
