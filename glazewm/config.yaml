@@ -132,16 +132,15 @@ window_rules:
       - window_title: { regex: '[Pp]icture.in.[Pp]icture' }
         window_class: { regex: 'Chrome_WidgetWin_1|MozillaDialogClass' }
 
+      - window_process: { regex: 'Taskmgr|ScreenClippingHost' }
+
       # Ignore rules for various 3rd-party apps.
       - window_process: { equals: 'PowerToys.PowerAccent' }
       - window_process: { equals: 'Lively' }
         window_class: { regex: 'HwndWrapper*' }
-
-      - window_process: { regex: 'Taskmgr|ScreenClippingHost' }
-
       - window_process: { regex: '.*PotPlayer.*' }
-
       - window_title: { equals: 'Tower of Fantasy' }
+      - window_process: { equals: 'Google Drive' }
 
   - commands: ['set-floating']
     match:
