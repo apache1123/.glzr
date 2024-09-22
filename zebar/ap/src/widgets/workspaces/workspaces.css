@@ -1,0 +1,42 @@
+.workspaces {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2px;
+}
+
+.workspace {
+  width: 100%;
+  height: 25px;
+  border: none;
+  border-radius: 12px;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.displayed,
+  &.focused,
+  &:hover {
+    height: 35px;
+  }
+
+  &.displayed {
+    background: var(--overlay-0);
+    color: var(--text-dark);
+  }
+
+  &.focused,
+  &:hover {
+    background: var(--mauve);
+    color: var(--text-dark);
+  }
+
+  &:not(:first-child) {
+    margin-top: 8px;
+  }
+}

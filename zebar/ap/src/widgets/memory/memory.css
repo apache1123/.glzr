@@ -1,0 +1,8 @@
+.memory {
+  --memory: var(--teal);
+
+  color: var(--memory);
+  .bar {
+    background-color: var(--memory);
+  }
+}

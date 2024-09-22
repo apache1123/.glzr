@@ -1,0 +1,8 @@
+#process-icon {
+  font-size: 1.8rem;
+}
+
+/* for debugging */
+#process-name {
+  display: none;
+}

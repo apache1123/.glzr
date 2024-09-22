@@ -1,0 +1,13 @@
+.rain,
+.no-rain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-rain {
+  color: var(--yellow);
+}
+.rain {
+  color: var(--blue);
+}

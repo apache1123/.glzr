@@ -1,0 +1,10 @@
+.status-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  i {
+    margin-bottom: 7px;
+  }
+}

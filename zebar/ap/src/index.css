@@ -1,0 +1,73 @@
+@import 'https://www.nerdfonts.com/assets/css/webfont.css';
+
+html,
+body,
+#root {
+  height: 100%;
+  font-family: 'Ubuntu', 'Noto Sans', 'Segoe UI', monospace;
+  font-size: 12px;
+
+  /* catppuccin frappe colors */
+  --rosewater: hsl(10, 57%, 88%);
+  --flamingo: hsl(0, 59%, 84%);
+  --mauve: hsl(277, 59%, 76%);
+  --red: hsl(359, 68%, 71%);
+  --peach: hsl(20, 79%, 70%);
+  --yellow: hsl(40, 62%, 73%);
+  --green: hsl(96, 44%, 68%);
+  --teal: hsl(172, 39%, 65%);
+  --sapphire: hsl(199, 55%, 69%);
+  --blue: hsl(222, 74%, 74%);
+  --lavender: hsl(239, 66%, 84%);
+  --text: hsl(227, 70%, 87%);
+  --overlay-2: hsl(228, 22%, 66%);
+  --overlay-1: hsl(227, 17%, 58%);
+  --overlay-0: hsl(229, 13%, 52%);
+  --surface-2: hsl(228, 13%, 44%);
+  --surface-1: hsl(227, 15%, 37%);
+  --surface-0: hsl(230, 16%, 30%);
+  --base: hsl(229, 19%, 23%);
+  --mantle: hsl(231, 19%, 20%);
+  --crust: hsl(229, 20%, 17%);
+  --text-dark: var(--crust);
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text);
+  user-select: none;
+  padding: 30px 5px;
+  border-right: 1px solid var(--crust);
+  background: color-mix(in hsl, var(--base) 95%, transparent);
+}
+
+.group {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Assuming the immediate children are widgets */
+  > * {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}
+
+#group-middle {
+  justify-content: center;
+}
+
+#group-bottom {
+  justify-content: end;
+}

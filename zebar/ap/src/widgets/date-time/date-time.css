@@ -1,0 +1,19 @@
+#date,
+#time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#time {
+  font-size: 1.8rem;
+}
+
+#meridiem {
+  font-size: 1rem;
+}
+
+#date {
+  margin-top: 20px;
+}

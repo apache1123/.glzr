@@ -1,0 +1,33 @@
+.bar-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bar-outline {
+  width: 100%;
+  height: 10px;
+  border: 1px solid var(--surface-1);
+  border-radius: 8px;
+  background-color: var(--surface-1);
+  opacity: 1;
+  transform: translateY(0%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.bar {
+  width: 0;
+  height: 100%;
+  border-radius: 8px;
+  background-color: var(--overlay-0);
+}
+
+.bar-value {
+  position: absolute;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}

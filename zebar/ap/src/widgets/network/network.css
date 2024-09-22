@@ -1,0 +1,8 @@
+.network {
+  --network: var(--lavender);
+
+  color: var(--network);
+  .bar {
+    background-color: var(--network);
+  }
+}

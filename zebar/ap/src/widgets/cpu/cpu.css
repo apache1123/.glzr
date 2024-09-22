@@ -1,0 +1,9 @@
+.cpu {
+  --cpu: var(--flamingo);
+
+  color: var(--cpu);
+
+  .bar {
+    background-color: var(--cpu);
+  }
+}

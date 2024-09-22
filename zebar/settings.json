@@ -1,6 +1,6 @@
 {
   "$schema": "TODO",
   "startupConfigs": [
-    "starter/with-glazewm.zebar.json"
+    "ap\\left-bar.zebar.json"
   ]
 }
