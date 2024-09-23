@@ -1,7 +1,7 @@
 import { For, Show } from 'solid-js';
 import { GlazeWmOutput } from '../..';
 import './workspaces.css';
-import { Icon } from '../../components/icon/icon';
+import { ApplicationIcon } from '../../components/application-icon/application-icon';
 
 export interface WorkspacesProps {
   glazewm: GlazeWmOutput;
@@ -22,11 +22,29 @@ export function Workspaces(props: WorkspacesProps) {
               props.glazewm.runCommand(`focus --workspace ${workspace.name}`)
             }
           >
+            <div class="workspace-name">
+              {workspace.displayName ?? workspace.name}
+            </div>
+
             <Show
-              when={workspace.hasFocus || workspace.isDisplayed}
-              fallback={workspace.displayName ?? workspace.name}
+              when={workspace.children.some((child) => child.type === 'window')}
             >
-              <Icon iconClass="nf-cod-octoface" />
+              <div class="workspace-applications">
+                <For each={workspace.children}>
+                  {(child) =>
+                    child.type === 'window' ? (
+                      <div
+                        classList={{
+                          'workspace-application': true,
+                          focused: child.hasFocus,
+                        }}
+                      >
+                        <ApplicationIcon processName={child.processName} />
+                      </div>
+                    ) : undefined
+                  }
+                </For>
+              </div>
             </Show>
           </button>
         )}

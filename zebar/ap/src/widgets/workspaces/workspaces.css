@@ -7,36 +7,62 @@
 
 .workspace {
   width: 100%;
-  height: 25px;
-  border: none;
+  border: 1px solid var(--base);
   border-radius: 12px;
-  background: none;
+  background: var(--mantle);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
-  color: var(--text);
+  padding: 0;
+  color: var(--surface-1);
   cursor: pointer;
   transition: all 0.3s ease;
+
+  &:hover {
+    padding: 4px 0;
+  }
 
   &.displayed,
   &.focused,
   &:hover {
-    height: 35px;
-  }
+    background: var(--surface-1);
+    color: var(--text);
+    border-color: var(--surface-2);
 
-  &.displayed {
-    background: var(--overlay-0);
-    color: var(--text-dark);
+    .workspace-applications {
+      border-color: var(--surface-2);
+    }
+
+    .workspace-application.focused {
+      font-size: 1.5em;
+    }
   }
 
   &.focused,
   &:hover {
-    background: var(--mauve);
-    color: var(--text-dark);
+    color: var(--mauve);
   }
 
   &:not(:first-child) {
-    margin-top: 8px;
+    margin-top: 10px;
+  }
+}
+
+.workspace-name {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1.2rem;
+}
+
+.workspace-applications {
+  width: 100%;
+  border-top: 1px solid var(--surface-0);
+  padding: 10px 0;
+}
+
+.workspace-application {
+  &:not(:first-child) {
+    margin-top: 10px;
   }
 }
