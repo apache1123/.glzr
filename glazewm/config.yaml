@@ -139,8 +139,7 @@ window_rules:
       - window_process: { equals: 'Lively' }
         window_class: { regex: 'HwndWrapper*' }
       - window_process: { regex: '.*PotPlayer.*' }
-      - window_title: { equals: 'Tower of Fantasy' }
-      - window_process: { equals: 'Google Drive' }
+      - window_title: { regex: '.*GoogleDriveFS.*' }
 
   - commands: ['set-floating']
     match:
