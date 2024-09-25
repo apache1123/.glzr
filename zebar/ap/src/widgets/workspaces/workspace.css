@@ -1,0 +1,31 @@
+.workspace-btn {
+  &.displayed,
+  &.focused,
+  &:hover {
+    .workspace-applications {
+      border-color: var(--surface-2);
+    }
+
+    .workspace-application.focused {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.workspace-name {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1.2rem;
+}
+
+.workspace-applications {
+  width: 100%;
+  border-top: 1px solid var(--surface-0);
+  padding: 10px 0;
+}
+
+.workspace-application {
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+}

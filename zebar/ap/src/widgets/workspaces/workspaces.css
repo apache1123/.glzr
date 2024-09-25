@@ -5,7 +5,7 @@
   padding: 0 2px;
 }
 
-.workspace {
+.workspace-btn {
   width: 100%;
   border: 1px solid var(--base);
   border-radius: 12px;
@@ -29,14 +29,6 @@
     background: var(--surface-1);
     color: var(--text);
     border-color: var(--surface-2);
-
-    .workspace-applications {
-      border-color: var(--surface-2);
-    }
-
-    .workspace-application.focused {
-      font-size: 1.5em;
-    }
   }
 
   &.focused,
@@ -44,24 +36,6 @@
     color: var(--mauve);
   }
 
-  &:not(:first-child) {
-    margin-top: 10px;
-  }
-}
-
-.workspace-name {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 1.2rem;
-}
-
-.workspace-applications {
-  width: 100%;
-  border-top: 1px solid var(--surface-0);
-  padding: 10px 0;
-}
-
-.workspace-application {
   &:not(:first-child) {
     margin-top: 10px;
   }

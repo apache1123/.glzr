@@ -27,6 +27,7 @@ const providers = await zebarCtx.createProviderGroup({
 export type DateOutput = typeof providers.outputMap.date;
 export type WeatherOutput = typeof providers.outputMap.weather;
 export type GlazeWmOutput = typeof providers.outputMap.glazewm;
+export type Workspace = GlazeWmOutput['currentWorkspaces'][0];
 export type CpuOutput = typeof providers.outputMap.cpu;
 export type MemoryOutput = typeof providers.outputMap.memory;
 export type NetworkOutput = typeof providers.outputMap.network;
