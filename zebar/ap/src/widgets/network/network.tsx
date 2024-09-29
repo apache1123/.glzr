@@ -1,4 +1,4 @@
-import { NetworkOutput } from '../..';
+import { NetworkOutput } from 'zebar';
 import { BarStatusItem } from '../../components/bar-status-item/bar-status-item';
 import { Bar } from '../../components/bar/bar';
 import './network.css';

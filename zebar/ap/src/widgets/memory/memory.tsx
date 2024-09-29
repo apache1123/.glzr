@@ -1,4 +1,4 @@
-import { MemoryOutput } from '../..';
+import { MemoryOutput } from 'zebar';
 import { BarStatusItem } from '../../components/bar-status-item/bar-status-item';
 import { Bar } from '../../components/bar/bar';
 import './memory.css';

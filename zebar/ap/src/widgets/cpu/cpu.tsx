@@ -1,7 +1,7 @@
 import './cpu.css';
-import { CpuOutput } from '../..';
 import { Bar } from '../../components/bar/bar';
 import { BarStatusItem } from '../../components/bar-status-item/bar-status-item';
+import { CpuOutput } from 'zebar';
 
 export interface CpuProps {
   cpu: CpuOutput;

@@ -1,6 +1,6 @@
 import { For, Show } from 'solid-js';
-import { GlazeWmOutput } from '../..';
 import { Icon } from '../../components/icon/icon';
+import { GlazeWmOutput } from 'zebar';
 
 export interface GlazewmStatusProps {
   glazewm: GlazeWmOutput;

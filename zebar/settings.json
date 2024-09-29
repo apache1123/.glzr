@@ -1,5 +1,5 @@
 {
-  "$schema": "TODO",
+  "$schema": "https://github.com/glzr-io/zebar/raw/v2.1.0/resources/settings-schema.json",
   "startupConfigs": [
     "ap\\left-bar.zebar.json"
   ]

@@ -1,10 +1,12 @@
 import './workspace.css';
 import { Show, For } from 'solid-js';
-import { GlazeWmOutput, Workspace as WorkspaceType } from '../..';
 import { ApplicationIcon } from '../../components/application-icon/application-icon';
+import { GlazeWmOutput } from 'zebar';
+
+type Workspace = GlazeWmOutput['currentWorkspaces'][0];
 
 export interface WorkspaceProps {
-  workspace: WorkspaceType;
+  workspace: Workspace;
   glazewm: GlazeWmOutput;
 }
 

@@ -1,7 +1,7 @@
 import { createEffect, createSignal } from 'solid-js';
 import './date-time.css';
 import dayjs from 'dayjs';
-import { DateOutput } from '../..';
+import { DateOutput } from 'zebar';
 
 export interface DateTimeProps {
   date: DateOutput;

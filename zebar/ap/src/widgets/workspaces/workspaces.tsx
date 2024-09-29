@@ -1,9 +1,9 @@
 import { For, Show } from 'solid-js';
-import { GlazeWmOutput } from '../..';
 import './workspaces.css';
 import { Workspace } from './workspace';
 import { workspacesByMonitor } from './workspace-list';
 import { AddWorkspace } from './add-workspace';
+import { GlazeWmOutput } from 'zebar';
 
 export interface WorkspacesProps {
   glazewm: GlazeWmOutput;

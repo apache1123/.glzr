@@ -1,8 +1,8 @@
-import { GlazeWmOutput } from '../..';
 import './current-application.css';
 import { ApplicationIcon } from '../../components/application-icon/application-icon';
 import { Show } from 'solid-js';
 import { Icon } from '../../components/icon/icon';
+import { GlazeWmOutput } from 'zebar';
 
 export interface CurrentApplicationProps {
   glazewm: GlazeWmOutput;

@@ -1,6 +1,6 @@
-import { WeatherOutput } from '../..';
 import './weather.css';
 import { StatusItem } from '../../components/status-item/status-item';
+import { WeatherOutput } from 'zebar';
 
 const rainingStatuses = [
   'light_rain_day',
