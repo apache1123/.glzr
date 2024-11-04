@@ -18,6 +18,8 @@ export interface ApplicationIconProps {
 
 export function ApplicationIcon(props: ApplicationIconProps) {
   const iconClass = () =>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     iconsByProcessName[props.processName] ?? 'nf-md-application'; // Generic icon for unknown process name
 
   return <Icon iconClass={iconClass()} />;

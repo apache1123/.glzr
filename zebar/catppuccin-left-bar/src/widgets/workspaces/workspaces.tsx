@@ -44,6 +44,8 @@ export function Workspaces(props: WorkspacesProps) {
       <Show when={displayedWorkspaceHasWindows() && !!firstFreeWorkspaceName()}>
         <AddWorkspace
           glazewm={props.glazewm}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           firstFreeWorkspaceName={firstFreeWorkspaceName()}
         />
       </Show>

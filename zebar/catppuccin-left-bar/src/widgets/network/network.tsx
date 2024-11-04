@@ -9,8 +9,11 @@ export interface NetworkProps {
 
 export function Network(props: NetworkProps) {
   const networkIcon = () =>
-    props.network.defaultInterface.type === 'wifi'
-      ? props.network.defaultGateway.signalStrength >= 80
+    props.network.defaultInterface?.type === 'wifi'
+      ? props.network.defaultGateway === null ||
+        props.network.defaultGateway.signalStrength === null
+        ? 'nf-md-wifi_strength_off'
+        : props.network.defaultGateway.signalStrength >= 80
         ? 'nf-md-wifi-strength_4'
         : props.network.defaultGateway.signalStrength >= 65
         ? 'nf-md-wifi_strength_3'
@@ -19,7 +22,7 @@ export function Network(props: NetworkProps) {
         : props.network.defaultGateway.signalStrength >= 25
         ? 'nf-md-wifi_strength_1'
         : 'nf-md-wifi_strength_outline'
-      : props.network.defaultInterface.type === 'ethernet'
+      : props.network.defaultInterface?.type === 'ethernet'
       ? 'nf-md-ethernet_cable'
       : 'nf-md-wifi_strength_off_outline';
 
@@ -30,16 +33,18 @@ export function Network(props: NetworkProps) {
         bars={
           <>
             <Bar
-              value={Math.round(props.network.traffic.received.siValue)}
-              unit={props.network.traffic.received.siUnit}
-              barValue={props.network.traffic.received.bytes}
+              value={Math.round(props.network.traffic?.received.siValue ?? 0)}
+              unit={props.network.traffic?.received.siUnit ?? ''}
+              barValue={props.network.traffic?.received.bytes ?? 0}
               // show as a portion of approx. max download speed (40MBps)
               barMaxValue={40000000}
             />
             <Bar
-              value={Math.round(props.network.traffic.transmitted.siValue)}
-              unit={props.network.traffic.transmitted.siUnit}
-              barValue={props.network.traffic.transmitted.bytes}
+              value={Math.round(
+                props.network.traffic?.transmitted.siValue ?? 0
+              )}
+              unit={props.network.traffic?.transmitted.siUnit ?? ''}
+              barValue={props.network.traffic?.transmitted.bytes ?? 0}
               // show as a portion of approx. max upload speed (13MBps)
               barMaxValue={13000000}
             />

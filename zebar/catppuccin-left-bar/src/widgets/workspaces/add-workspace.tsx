@@ -1,6 +1,6 @@
 import './add-workspace.css';
-import { GlazeWmOutput } from '../..';
 import { Icon } from '../../components/icon/icon';
+import { GlazeWmOutput } from 'zebar';
 
 export interface AddWorkspaceProps {
   glazewm: GlazeWmOutput;

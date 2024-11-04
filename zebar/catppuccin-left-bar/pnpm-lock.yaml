@@ -15,8 +15,8 @@ importers:
         specifier: 1.8.11
         version: 1.8.11
       zebar:
-        specifier: ^2.0.0
-        version: 2.2.1(ws@8.18.0)
+        specifier: ^2.4.0
+        version: 2.4.0(ws@8.18.0)
     devDependencies:
       '@eslint/js':
         specifier: ^9.11.0
@@ -480,14 +480,14 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@tauri-apps/api@2.0.0-rc.5':
-    resolution: {integrity: sha512-JWs69pE9NsQdcqTpEVBepAZ08+jgQWuthIiTiaWRq/YlCLgnqq0KfC9sDem55uJ0YpgsytZuyj+m6b6q8oiD2g==}
+  '@tauri-apps/api@2.0.2':
+    resolution: {integrity: sha512-3wSwmG+1kr6WrgAFKK5ijkNFPp8TT3FLj3YHUb5EwMO+3FxX4uWlfSWkeeBy+Kc1RsKzugtYLuuya+98Flj+3w==}
 
-  '@tauri-apps/plugin-dialog@2.0.0-rc.1':
-    resolution: {integrity: sha512-H28gh6BfZtjflHQ+HrmWwunDriBI3AQLAKnMs50GA6zeNUULqbQr7VXbAAKeJL/0CmWcecID4PKXVoSlaWRhEg==}
+  '@tauri-apps/plugin-dialog@2.0.0':
+    resolution: {integrity: sha512-ApNkejXP2jpPBSifznPPcHTXxu9/YaRW+eJ+8+nYwqp0lLUtebFHG4QhxitM43wwReHE81WAV1DQ/b+2VBftOA==}
 
-  '@tauri-apps/plugin-shell@2.0.0-rc.1':
-    resolution: {integrity: sha512-JtNROc0rqEwN/g93ig5pK4cl1vUo2yn+osCpY9de64cy/d9hRzof7AuYOgvt/Xcd5VPQmlgo2AGvUh5sQRSR1A==}
+  '@tauri-apps/plugin-shell@2.0.0':
+    resolution: {integrity: sha512-OpW2+ycgJLrEoZityWeWYk+6ZWP9VyiAfbO+N/O8VfLkqyOym8kXh7odKDfINx9RAotkSGBtQM4abyKfJDkcUg==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -824,8 +824,8 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
 
-  glazewm@1.5.2:
-    resolution: {integrity: sha512-qkh0dKtVRWM3pRCn6uaHpAiQ+qJJI5/aePNqBVUnCD/2aqRX5Dc2V3JB0bPhYhPZPr+lgodfiz/MusgpYYMRZA==}
+  glazewm@1.6.0:
+    resolution: {integrity: sha512-JHDuL0Fda9NQVm0mJap8XsBNAatWhAOJj6HBy7nzrXvj4wUkKdbytI0LLGDUm/aLOYeT+XqdLJpH7HImggr5ig==}
     engines: {node: '>=12'}
     peerDependencies:
       ws: '*'
@@ -1331,8 +1331,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zebar@2.2.1:
-    resolution: {integrity: sha512-fz/IdTnjDheeuHqkx5ZxESNtO9dDzPJMnD0cfexWh7D3tikER/buDZL14tBmWeGdJ7j4qTOW/FGNTLhxOFaMng==}
+  zebar@2.4.0:
+    resolution: {integrity: sha512-2kkZ0PI9vca5UFn/lGtwBez/zOEV2V2TWYHd30tqQyydsLOWkhE3AVvhruRr5QhOfC8YDzeUiEcDokiokYOdSg==}
 
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
@@ -1742,15 +1742,15 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@tauri-apps/api@2.0.0-rc.5': {}
+  '@tauri-apps/api@2.0.2': {}
 
-  '@tauri-apps/plugin-dialog@2.0.0-rc.1':
+  '@tauri-apps/plugin-dialog@2.0.0':
     dependencies:
-      '@tauri-apps/api': 2.0.0-rc.5
+      '@tauri-apps/api': 2.0.2
 
-  '@tauri-apps/plugin-shell@2.0.0-rc.1':
+  '@tauri-apps/plugin-shell@2.0.0':
     dependencies:
-      '@tauri-apps/api': 2.0.0-rc.5
+      '@tauri-apps/api': 2.0.2
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -2161,7 +2161,7 @@ snapshots:
 
   gensync@1.0.0-beta.2: {}
 
-  glazewm@1.5.2(ws@8.18.0):
+  glazewm@1.6.0(ws@8.18.0):
     dependencies:
       tslib: 2.6.1
     optionalDependencies:
@@ -2604,12 +2604,12 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zebar@2.2.1(ws@8.18.0):
+  zebar@2.4.0(ws@8.18.0):
     dependencies:
-      '@tauri-apps/api': 2.0.0-rc.5
-      '@tauri-apps/plugin-dialog': 2.0.0-rc.1
-      '@tauri-apps/plugin-shell': 2.0.0-rc.1
-      glazewm: 1.5.2(ws@8.18.0)
+      '@tauri-apps/api': 2.0.2
+      '@tauri-apps/plugin-dialog': 2.0.0
+      '@tauri-apps/plugin-shell': 2.0.0
+      glazewm: 1.6.0(ws@8.18.0)
       luxon: 3.4.4
       zod: 3.22.4
     transitivePeerDependencies:
