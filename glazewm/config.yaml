@@ -144,11 +144,8 @@ window_rules:
     match:
       # Steam friends list
       - window_title: { equals: 'Friends List' }
-
       - window_title: { equals: 'Solitaire & Casual Games' }
-
       - window_title: { regex: '.*Yomitan Search' }
-
       - window_title: { regex: 'Sticky Notes.*' }
 
   - commands: ['move --workspace 2-2']

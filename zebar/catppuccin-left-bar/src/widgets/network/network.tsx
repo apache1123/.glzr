@@ -12,9 +12,9 @@ export function Network(props: NetworkProps) {
     props.network.defaultInterface?.type === 'wifi'
       ? props.network.defaultGateway === null ||
         props.network.defaultGateway.signalStrength === null
-        ? 'nf-md-wifi_strength_off'
+        ? 'nf-md-wifi_strength_off_outline'
         : props.network.defaultGateway.signalStrength >= 80
-        ? 'nf-md-wifi-strength_4'
+        ? 'nf-md-wifi_strength_4'
         : props.network.defaultGateway.signalStrength >= 65
         ? 'nf-md-wifi_strength_3'
         : props.network.defaultGateway.signalStrength >= 40
