@@ -159,6 +159,8 @@ window_rules:
   - commands: ['move --workspace 1-2', 'focus --workspace 1-2']
     match:
       - window_title: { regex: '.*Visual Studio Code' }
+      - window_process: { regex: '.*webstorm.*' }
+      - window_process: { regex: '.*jetbrains.*' }
 
 binding_modes:
   #   # When enabled, the focused window can be resized via arrow keys or HJKL.
