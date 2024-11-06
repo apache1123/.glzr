@@ -10,6 +10,7 @@ const iconsByProcessName = {
   stremio: 'nf-md-movie',
   mpvnet: 'nf-linux-mpv',
   QRSL: 'nf-md-gamepad_variant',
+  webstorm64: 'nf-fa-code'
 };
 
 export interface ApplicationIconProps {
