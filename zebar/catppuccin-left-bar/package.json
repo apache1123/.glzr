@@ -9,7 +9,7 @@
   "dependencies": {
     "dayjs": "^1.11.13",
     "solid-js": "1.8.11",
-    "zebar": "^2.4.0"
+    "zebar": "^2.5.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
