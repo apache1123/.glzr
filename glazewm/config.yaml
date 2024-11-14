@@ -19,6 +19,11 @@ general:
     # - 'window_focus': Jump when focus changes between windows.
     trigger: 'monitor_focus'
 
+  # The method to use when hiding windows.
+  # - 'cloak'
+  # - 'hide' (legacy)
+  hide_method: 'hide'
+
 gaps:
   # Gap between adjacent windows.
   inner_gap: '20px'
