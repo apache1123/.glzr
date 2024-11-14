@@ -5,9 +5,10 @@
   "shownInTaskbar": false,
   "focused": false,
   "resizable": false,
-  "transparent": false,
-  "defaultPlacements": [
+  "transparent": true,
+  "presets": [
     {
+      "name": "default",
       "anchor": "top_left",
       "offsetX": "0px",
       "offsetY": "0px",
@@ -15,6 +16,11 @@
       "height": "100%",
       "monitorSelection": {
         "type": "all"
+      },
+      "dockToEdge": {
+        "enabled": false,
+        "edge": null,
+        "windowMargin": "0px"
       }
     }
   ]
