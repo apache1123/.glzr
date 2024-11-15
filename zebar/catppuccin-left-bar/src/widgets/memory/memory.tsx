@@ -1,7 +1,7 @@
-import { MemoryOutput } from 'zebar';
-import { BarStatusItem } from '../../components/bar-status-item/bar-status-item';
-import { Bar } from '../../components/bar/bar';
-import './memory.css';
+import { MemoryOutput } from "zebar";
+import { BarStatusItem } from "../../components/bar-status-item/bar-status-item";
+import { Bar } from "../../components/bar/bar";
+import "./memory.css";
 
 export interface MemoryProps {
   memory: MemoryOutput;

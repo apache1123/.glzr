@@ -1,9 +1,9 @@
-import './workspace.css';
-import { Show, For } from 'solid-js';
-import { ApplicationIcon } from '../../components/application-icon/application-icon';
-import { GlazeWmOutput } from 'zebar';
+import "./workspace.css";
+import { Show, For } from "solid-js";
+import { ApplicationIcon } from "../../components/application-icon/application-icon";
+import { GlazeWmOutput } from "zebar";
 
-type Workspace = GlazeWmOutput['currentWorkspaces'][0];
+type Workspace = GlazeWmOutput["currentWorkspaces"][0];
 
 export interface WorkspaceProps {
   workspace: Workspace;
@@ -14,7 +14,7 @@ export function Workspace(props: WorkspaceProps) {
   return (
     <button
       classList={{
-        'workspace-btn': true,
+        "workspace-btn": true,
         focused: props.workspace.hasFocus,
         displayed: props.workspace.isDisplayed,
       }}
@@ -27,15 +27,15 @@ export function Workspace(props: WorkspaceProps) {
       </div>
 
       <Show
-        when={props.workspace.children.some((child) => child.type === 'window')}
+        when={props.workspace.children.some((child) => child.type === "window")}
       >
         <div class="workspace-applications">
           <For each={props.workspace.children}>
             {(child) =>
-              child.type === 'window' ? (
+              child.type === "window" ? (
                 <div
                   classList={{
-                    'workspace-application': true,
+                    "workspace-application": true,
                     focused: child.hasFocus,
                   }}
                 >

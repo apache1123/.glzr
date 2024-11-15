@@ -1,6 +1,6 @@
-import { ParentProps } from 'solid-js';
-import './status-item.css';
-import { Icon } from '../icon/icon';
+import { ParentProps } from "solid-js";
+import "./status-item.css";
+import { Icon } from "../icon/icon";
 
 export type StatusItemProps = ParentProps<{
   iconClass: string;

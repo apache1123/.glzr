@@ -1,7 +1,7 @@
-import { NetworkOutput } from 'zebar';
-import { BarStatusItem } from '../../components/bar-status-item/bar-status-item';
-import { Bar } from '../../components/bar/bar';
-import './network.css';
+import { NetworkOutput } from "zebar";
+import { BarStatusItem } from "../../components/bar-status-item/bar-status-item";
+import { Bar } from "../../components/bar/bar";
+import "./network.css";
 
 export interface NetworkProps {
   network: NetworkOutput;
@@ -9,22 +9,22 @@ export interface NetworkProps {
 
 export function Network(props: NetworkProps) {
   const networkIcon = () =>
-    props.network.defaultInterface?.type === 'wifi'
+    props.network.defaultInterface?.type === "wifi"
       ? props.network.defaultGateway === null ||
         props.network.defaultGateway.signalStrength === null
-        ? 'nf-md-wifi_strength_off_outline'
+        ? "nf-md-wifi_strength_off_outline"
         : props.network.defaultGateway.signalStrength >= 80
-        ? 'nf-md-wifi_strength_4'
-        : props.network.defaultGateway.signalStrength >= 65
-        ? 'nf-md-wifi_strength_3'
-        : props.network.defaultGateway.signalStrength >= 40
-        ? 'nf-md-wifi_strength_2'
-        : props.network.defaultGateway.signalStrength >= 25
-        ? 'nf-md-wifi_strength_1'
-        : 'nf-md-wifi_strength_outline'
-      : props.network.defaultInterface?.type === 'ethernet'
-      ? 'nf-md-ethernet_cable'
-      : 'nf-md-wifi_strength_off_outline';
+          ? "nf-md-wifi_strength_4"
+          : props.network.defaultGateway.signalStrength >= 65
+            ? "nf-md-wifi_strength_3"
+            : props.network.defaultGateway.signalStrength >= 40
+              ? "nf-md-wifi_strength_2"
+              : props.network.defaultGateway.signalStrength >= 25
+                ? "nf-md-wifi_strength_1"
+                : "nf-md-wifi_strength_outline"
+      : props.network.defaultInterface?.type === "ethernet"
+        ? "nf-md-ethernet_cable"
+        : "nf-md-wifi_strength_off_outline";
 
   return (
     <div class="network">
@@ -34,16 +34,16 @@ export function Network(props: NetworkProps) {
           <>
             <Bar
               value={Math.round(props.network.traffic?.received.siValue ?? 0)}
-              unit={props.network.traffic?.received.siUnit ?? ''}
+              unit={props.network.traffic?.received.siUnit ?? ""}
               barValue={props.network.traffic?.received.bytes ?? 0}
               // show as a portion of approx. max download speed (40MBps)
               barMaxValue={40000000}
             />
             <Bar
               value={Math.round(
-                props.network.traffic?.transmitted.siValue ?? 0
+                props.network.traffic?.transmitted.siValue ?? 0,
               )}
-              unit={props.network.traffic?.transmitted.siUnit ?? ''}
+              unit={props.network.traffic?.transmitted.siUnit ?? ""}
               barValue={props.network.traffic?.transmitted.bytes ?? 0}
               // show as a portion of approx. max upload speed (13MBps)
               barMaxValue={13000000}

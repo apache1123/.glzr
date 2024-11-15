@@ -14,7 +14,9 @@
   background-color: var(--surface-1);
   opacity: 1;
   transform: translateY(0%);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .bar {
@@ -29,5 +31,7 @@
   cursor: default;
   opacity: 0;
   transform: translateY(-100%);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }

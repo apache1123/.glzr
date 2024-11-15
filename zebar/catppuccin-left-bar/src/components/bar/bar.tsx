@@ -1,4 +1,4 @@
-import './bar.css';
+import "./bar.css";
 
 export interface BarProps {
   value: number;
@@ -18,9 +18,9 @@ export function Bar(props: BarProps) {
           style={{
             width: `${Math.min(
               Math.round(
-                ((props.barValue ?? props.value) / props.barMaxValue) * 100
+                ((props.barValue ?? props.value) / props.barMaxValue) * 100,
               ),
-              100
+              100,
             )}%`,
           }}
         ></div>

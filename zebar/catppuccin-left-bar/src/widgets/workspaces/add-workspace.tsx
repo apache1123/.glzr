@@ -1,6 +1,6 @@
-import './add-workspace.css';
-import { Icon } from '../../components/icon/icon';
-import { GlazeWmOutput } from 'zebar';
+import "./add-workspace.css";
+import { Icon } from "../../components/icon/icon";
+import { GlazeWmOutput } from "zebar";
 
 export interface AddWorkspaceProps {
   glazewm: GlazeWmOutput;
@@ -13,7 +13,7 @@ export function AddWorkspace(props: AddWorkspaceProps) {
       class="workspace-btn add-workspace"
       onClick={() =>
         props.glazewm.runCommand(
-          `focus --workspace ${props.firstFreeWorkspaceName}`
+          `focus --workspace ${props.firstFreeWorkspaceName}`,
         )
       }
     >

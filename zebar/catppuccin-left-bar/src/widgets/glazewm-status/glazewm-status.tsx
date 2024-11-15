@@ -1,6 +1,6 @@
-import { For, Show } from 'solid-js';
-import { Icon } from '../../components/icon/icon';
-import { GlazeWmOutput } from 'zebar';
+import { For, Show } from "solid-js";
+import { Icon } from "../../components/icon/icon";
+import { GlazeWmOutput } from "zebar";
 
 export interface GlazewmStatusProps {
   glazewm: GlazeWmOutput;
@@ -15,7 +15,7 @@ export function GlazewmStatus(props: GlazewmStatusProps) {
         )}
       </For>
       <Show
-        when={props.glazewm.tilingDirection === 'horizontal'}
+        when={props.glazewm.tilingDirection === "horizontal"}
         fallback={<Icon iconClass="nf-md-swap_vertical" />}
       >
         <Icon iconClass="nf-md-swap_horizontal" />
