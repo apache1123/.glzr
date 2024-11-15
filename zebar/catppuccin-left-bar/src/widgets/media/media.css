@@ -1,8 +1,16 @@
 .media {
-  color: var(--overlay-0);
+  color: var(--blue);
 
-  &.is-playing {
-    color: var(--blue);
+  #media-artist {
+    color: var(--overlay-2);
+  }
+
+  &.is-paused {
+    color: var(--overlay-0);
+
+    #media-artist {
+      color: var(--overlay-0);
+    }
   }
 }
 
@@ -11,7 +19,6 @@
   font-size: 0.8rem;
   overflow: hidden;
   width: 100%;
-  max-height: 12px; /* about 1 line */
   text-align: center;
   text-overflow: ellipsis;
 }
@@ -22,6 +29,6 @@
 }
 
 #media-artist {
+  max-height: 23px; /* about 2 lines */
   margin-top: 2px;
-  color: var(--overlay-2);
 }

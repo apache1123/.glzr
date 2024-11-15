@@ -14,7 +14,7 @@ export function Media({ media: { session } }: MediaProps) {
 
   return (
     session && (
-      <div className={classNames({ "is-playing": isPlaying(), media: true })}>
+      <div className={classNames({ "is-paused": !isPlaying(), media: true })}>
         <StatusItem iconClass={playingIconClass()}>
           <>
             <Marquee speed={10} play={isPlaying()} autoFill>
