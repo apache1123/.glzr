@@ -9,15 +9,15 @@ export interface MediaProps {
 }
 
 export function Media({ media: { session } }: MediaProps) {
-  const isPlaying = () => !!session?.isPlaying;
-  const playingIconClass = () => (isPlaying() ? "nf-fa-play" : "nf-fa-pause");
+  const isPlaying = !!session?.isPlaying;
+  const playingIconClass = isPlaying ? "nf-fa-play" : "nf-fa-pause";
 
   return (
     session && (
-      <div className={classNames({ "is-paused": !isPlaying(), media: true })}>
-        <StatusItem iconClass={playingIconClass()}>
+      <div className={classNames({ "is-paused": !isPlaying, media: true })}>
+        <StatusItem iconClass={playingIconClass}>
           <>
-            <Marquee speed={10} play={isPlaying()} autoFill>
+            <Marquee speed={10} play={isPlaying} autoFill>
               <div id="media-title" title={session.title}>
                 {session.title}
               </div>

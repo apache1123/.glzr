@@ -10,7 +10,7 @@ export interface NetworkProps {
 export function Network({
   network: { defaultInterface, defaultGateway, traffic },
 }: NetworkProps) {
-  const networkIcon = () =>
+  const networkIcon =
     defaultInterface?.type === "wifi"
       ? defaultGateway === null || defaultGateway.signalStrength === null
         ? "nf-md-wifi_strength_off_outline"
@@ -30,7 +30,7 @@ export function Network({
   return (
     <div className="network">
       <BarStatusItem
-        iconClass={networkIcon()}
+        iconClass={networkIcon}
         bars={
           <>
             <Bar

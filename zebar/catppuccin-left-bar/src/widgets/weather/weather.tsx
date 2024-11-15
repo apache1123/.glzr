@@ -33,10 +33,10 @@ export interface WeatherProps {
 }
 
 export function Weather({ weather }: WeatherProps) {
-  const isRaining = () => rainingStatuses.includes(weather.status);
+  const isRaining = rainingStatuses.includes(weather.status);
 
   return (
-    <div className={isRaining() ? "rain" : "no-rain"}>
+    <div className={isRaining ? "rain" : "no-rain"}>
       <StatusItem
         iconClass={icons[weather.status]}
       >{`${weather.celsiusTemp.toFixed(0)}°`}</StatusItem>

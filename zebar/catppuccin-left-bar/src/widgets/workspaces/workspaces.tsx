@@ -27,9 +27,8 @@ export function Workspaces({ glazewm }: WorkspacesProps) {
     );
   };
 
-  const displayedWorkspaceHasWindows = () => {
-    return glazewm.displayedWorkspace.children.length > 0;
-  };
+  const displayedWorkspaceHasWindows =
+    glazewm.displayedWorkspace.children.length > 0;
 
   return (
     <div className="workspaces">
@@ -38,7 +37,7 @@ export function Workspaces({ glazewm }: WorkspacesProps) {
       ))}
 
       {/* Show add workspace button when the current workspace is not empty and there is a free workspace */}
-      {displayedWorkspaceHasWindows() && !!firstFreeWorkspaceName() && (
+      {displayedWorkspaceHasWindows && !!firstFreeWorkspaceName() && (
         <AddWorkspace
           glazewm={glazewm}
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
