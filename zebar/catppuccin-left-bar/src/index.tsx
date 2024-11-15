@@ -7,10 +7,10 @@ import { DateTime } from "./widgets/date-time/date-time";
 import { Weather } from "./widgets/weather/weather";
 import { CurrentApplication } from "./widgets/current-application/current-application";
 import { Workspaces } from "./widgets/workspaces/workspaces";
-import { GlazewmStatus } from "./widgets/glazewm-status/glazewm-status";
 import { Cpu } from "./widgets/cpu/cpu";
 import { Memory } from "./widgets/memory/memory";
 import { Network } from "./widgets/network/network";
+import { Media } from "./widgets/media/media";
 
 const providers = zebar.createProviderGroup({
   date: { type: "date" },
@@ -19,6 +19,7 @@ const providers = zebar.createProviderGroup({
   cpu: { type: "cpu" },
   memory: { type: "memory" },
   network: { type: "network" },
+  media: { type: "media" },
 });
 
 render(() => <App />, document.getElementById("root")!);
@@ -39,7 +40,8 @@ function App() {
         {output.glazewm && <Workspaces glazewm={output.glazewm} />}
       </div>
       <div class="group" id="group-bottom">
-        {output.glazewm && <GlazewmStatus glazewm={output.glazewm} />}
+        {output.media && <Media media={output.media} />}
+        {/*{output.glazewm && <GlazewmStatus glazewm={output.glazewm} />}*/}
         {output.cpu && <Cpu cpu={output.cpu} />}
         {output.memory && <Memory memory={output.memory} />}
         {output.network && <Network network={output.network} />}

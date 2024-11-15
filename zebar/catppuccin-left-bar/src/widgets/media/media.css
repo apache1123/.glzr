@@ -1,0 +1,22 @@
+.media {
+  color: var(--overlay-0);
+
+  &.is-playing {
+    color: var(--blue);
+  }
+}
+
+#media-title,
+#media-artist {
+  font-size: 0.8rem;
+  overflow: hidden;
+  width: 100%;
+  max-height: 12px; /* about 1 line */
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+#media-artist {
+  margin-top: 2px;
+  color: var(--overlay-2);
+}
