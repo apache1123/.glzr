@@ -9,25 +9,23 @@ export interface BarProps {
   barMaxValue: number;
 }
 
-export function Bar(props: BarProps) {
+export function Bar({ value, unit, barValue, barMaxValue }: BarProps) {
   return (
-    <div class="bar-wrapper">
-      <div class="bar-outline">
+    <div className="bar-wrapper">
+      <div className="bar-outline">
         <div
-          class="bar"
+          className="bar"
           style={{
             width: `${Math.min(
-              Math.round(
-                ((props.barValue ?? props.value) / props.barMaxValue) * 100,
-              ),
+              Math.round(((barValue ?? value) / barMaxValue) * 100),
               100,
             )}%`,
           }}
         ></div>
       </div>
-      <div class="bar-value">
-        {props.value}
-        {props.unit}
+      <div className="bar-value">
+        {value}
+        {unit}
       </div>
     </div>
   );

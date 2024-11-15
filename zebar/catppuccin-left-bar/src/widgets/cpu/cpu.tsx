@@ -7,15 +7,13 @@ export interface CpuProps {
   cpu: CpuOutput;
 }
 
-export function Cpu(props: CpuProps) {
+export function Cpu({ cpu }: CpuProps) {
   return (
-    <div class="cpu">
+    <div className="cpu">
       <BarStatusItem
         iconClass="nf-oct-cpu"
-        bars={
-          <Bar value={Math.round(props.cpu.usage)} unit="%" barMaxValue={100} />
-        }
-        isHighUsage={props.cpu.usage > 85}
+        bars={<Bar value={Math.round(cpu.usage)} unit="%" barMaxValue={100} />}
+        isHighUsage={cpu.usage > 85}
       />
     </div>
   );

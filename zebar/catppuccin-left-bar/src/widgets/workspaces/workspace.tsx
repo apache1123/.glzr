@@ -1,7 +1,7 @@
 import "./workspace.css";
-import { Show, For } from "solid-js";
 import { ApplicationIcon } from "../../components/application-icon/application-icon";
 import { GlazeWmOutput } from "zebar";
+import classNames from "classnames";
 
 type Workspace = GlazeWmOutput["currentWorkspaces"][0];
 
@@ -10,42 +10,36 @@ export interface WorkspaceProps {
   glazewm: GlazeWmOutput;
 }
 
-export function Workspace(props: WorkspaceProps) {
+export function Workspace({ workspace, glazewm }: WorkspaceProps) {
   return (
     <button
-      classList={{
+      className={classNames({
         "workspace-btn": true,
-        focused: props.workspace.hasFocus,
-        displayed: props.workspace.isDisplayed,
-      }}
-      onClick={() =>
-        props.glazewm.runCommand(`focus --workspace ${props.workspace.name}`)
-      }
+        focused: workspace.hasFocus,
+        displayed: workspace.isDisplayed,
+      })}
+      onClick={() => glazewm.runCommand(`focus --workspace ${workspace.name}`)}
     >
-      <div class="workspace-name">
-        {props.workspace.displayName ?? props.workspace.name}
+      <div className="workspace-name">
+        {workspace.displayName ?? workspace.name}
       </div>
 
-      <Show
-        when={props.workspace.children.some((child) => child.type === "window")}
-      >
-        <div class="workspace-applications">
-          <For each={props.workspace.children}>
-            {(child) =>
-              child.type === "window" ? (
-                <div
-                  classList={{
-                    "workspace-application": true,
-                    focused: child.hasFocus,
-                  }}
-                >
-                  <ApplicationIcon processName={child.processName} />
-                </div>
-              ) : undefined
-            }
-          </For>
+      {workspace.children.some((child) => child.type === "window") && (
+        <div className="workspace-applications">
+          {workspace.children.map((child) =>
+            child.type === "window" ? (
+              <div
+                className={classNames({
+                  "workspace-application": true,
+                  focused: child.hasFocus,
+                })}
+              >
+                <ApplicationIcon processName={child.processName} />
+              </div>
+            ) : undefined,
+          )}
         </div>
-      </Show>
+      )}
     </button>
   );
 }

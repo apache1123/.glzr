@@ -1,4 +1,3 @@
-import { For, Show } from "solid-js";
 import "./workspaces.css";
 import { Workspace } from "./workspace";
 import { workspacesByMonitor } from "./workspace-list";
@@ -9,11 +8,11 @@ export interface WorkspacesProps {
   glazewm: GlazeWmOutput;
 }
 
-export function Workspaces(props: WorkspacesProps) {
+export function Workspaces({ glazewm }: WorkspacesProps) {
   /** Returns the first free workspace name from the current monitor */
   const firstFreeWorkspaceName = (): string | undefined => {
-    const monitorIndex = props.glazewm.allMonitors.findIndex(
-      (monitor) => monitor.id === props.glazewm.currentMonitor.id,
+    const monitorIndex = glazewm.allMonitors.findIndex(
+      (monitor) => monitor.id === glazewm.currentMonitor.id,
     );
 
     if (monitorIndex === -1) return undefined;
@@ -22,33 +21,31 @@ export function Workspaces(props: WorkspacesProps) {
 
     return allWorkspaceNames.find(
       (workspaceName) =>
-        !props.glazewm.currentWorkspaces.some(
+        !glazewm.currentWorkspaces.some(
           (workspace) => workspace.name === workspaceName,
         ),
     );
   };
 
   const displayedWorkspaceHasWindows = () => {
-    return props.glazewm.displayedWorkspace.children.length > 0;
+    return glazewm.displayedWorkspace.children.length > 0;
   };
 
   return (
-    <div class="workspaces">
-      <For each={props.glazewm.currentWorkspaces}>
-        {(workspace) => (
-          <Workspace workspace={workspace} glazewm={props.glazewm} />
-        )}
-      </For>
+    <div className="workspaces">
+      {glazewm.currentWorkspaces.map((workspace) => (
+        <Workspace workspace={workspace} key={workspace.id} glazewm={glazewm} />
+      ))}
 
       {/* Show add workspace button when the current workspace is not empty and there is a free workspace */}
-      <Show when={displayedWorkspaceHasWindows() && !!firstFreeWorkspaceName()}>
+      {displayedWorkspaceHasWindows() && !!firstFreeWorkspaceName() && (
         <AddWorkspace
-          glazewm={props.glazewm}
+          glazewm={glazewm}
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           firstFreeWorkspaceName={firstFreeWorkspaceName()}
         />
-      </Show>
+      )}
     </div>
   );
 }

@@ -32,14 +32,14 @@ export interface WeatherProps {
   weather: WeatherOutput;
 }
 
-export function Weather(props: WeatherProps) {
-  const isRaining = () => rainingStatuses.includes(props.weather.status);
+export function Weather({ weather }: WeatherProps) {
+  const isRaining = () => rainingStatuses.includes(weather.status);
 
   return (
-    <div class={isRaining() ? "rain" : "no-rain"}>
+    <div className={isRaining() ? "rain" : "no-rain"}>
       <StatusItem
-        iconClass={icons[props.weather.status]}
-      >{`${props.weather.celsiusTemp.toFixed(0)}°`}</StatusItem>
+        iconClass={icons[weather.status]}
+      >{`${weather.celsiusTemp.toFixed(0)}°`}</StatusItem>
     </div>
   );
 }

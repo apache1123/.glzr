@@ -7,14 +7,15 @@ export interface AddWorkspaceProps {
   firstFreeWorkspaceName: string;
 }
 
-export function AddWorkspace(props: AddWorkspaceProps) {
+export function AddWorkspace({
+  glazewm,
+  firstFreeWorkspaceName,
+}: AddWorkspaceProps) {
   return (
     <button
-      class="workspace-btn add-workspace"
+      className="workspace-btn add-workspace"
       onClick={() =>
-        props.glazewm.runCommand(
-          `focus --workspace ${props.firstFreeWorkspaceName}`,
-        )
+        glazewm.runCommand(`focus --workspace ${firstFreeWorkspaceName}`)
       }
     >
       <Icon iconClass="nf-md-plus" />

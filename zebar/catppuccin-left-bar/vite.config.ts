@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
-import solidPlugin from "vite-plugin-solid";
+import react from "@vitejs/plugin-react";
 
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [solidPlugin()],
-  build: { target: "esnext" },
+  plugins: [react()],
   base: "./",
 });

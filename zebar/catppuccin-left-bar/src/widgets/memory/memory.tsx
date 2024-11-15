@@ -7,19 +7,15 @@ export interface MemoryProps {
   memory: MemoryOutput;
 }
 
-export function Memory(props: MemoryProps) {
+export function Memory({ memory }: MemoryProps) {
   return (
-    <div class="memory">
+    <div className="memory">
       <BarStatusItem
         iconClass="nf-fae-chip"
         bars={
-          <Bar
-            value={Math.round(props.memory.usage)}
-            barMaxValue={100}
-            unit="%"
-          />
+          <Bar value={Math.round(memory.usage)} barMaxValue={100} unit="%" />
         }
-        isHighUsage={props.memory.usage > 85}
+        isHighUsage={memory.usage > 85}
       />
     </div>
   );

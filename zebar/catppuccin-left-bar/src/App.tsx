@@ -1,16 +1,14 @@
-/* @refresh reload */
-import "./index.css";
-import { render } from "solid-js/web";
-import { createStore } from "solid-js/store";
+import "./App.css";
+import { useEffect, useState } from "react";
 import * as zebar from "zebar";
-import { DateTime } from "./widgets/date-time/date-time";
-import { Weather } from "./widgets/weather/weather";
-import { CurrentApplication } from "./widgets/current-application/current-application";
-import { Workspaces } from "./widgets/workspaces/workspaces";
-import { Cpu } from "./widgets/cpu/cpu";
-import { Memory } from "./widgets/memory/memory";
-import { Network } from "./widgets/network/network";
-import { Media } from "./widgets/media/media";
+import { DateTime } from "./widgets/date-time/date-time.tsx";
+import { Weather } from "./widgets/weather/weather.tsx";
+import { CurrentApplication } from "./widgets/current-application/current-application.tsx";
+import { Workspaces } from "./widgets/workspaces/workspaces.tsx";
+import { Media } from "./widgets/media/media.tsx";
+import { Cpu } from "./widgets/cpu/cpu.tsx";
+import { Memory } from "./widgets/memory/memory.tsx";
+import { Network } from "./widgets/network/network.tsx";
 
 const providers = zebar.createProviderGroup({
   date: { type: "date" },
@@ -22,24 +20,24 @@ const providers = zebar.createProviderGroup({
   media: { type: "media" },
 });
 
-render(() => <App />, document.getElementById("root")!);
-
 function App() {
-  const [output, setOutput] = createStore(providers.outputMap);
+  const [output, setOutput] = useState(providers.outputMap);
 
-  providers.onOutput((outputMap) => setOutput(outputMap));
+  useEffect(() => {
+    providers.onOutput(() => setOutput(providers.outputMap));
+  }, []);
 
   return (
-    <div class="app">
-      <div class="group" id="group-top">
+    <div className="app">
+      <div className="group" id="group-top">
         {output.date && <DateTime date={output.date} />}
         {output.weather && <Weather weather={output.weather} />}
       </div>
-      <div class="group" id="group-middle">
+      <div className="group" id="group-middle">
         {output.glazewm && <CurrentApplication glazewm={output.glazewm} />}
         {output.glazewm && <Workspaces glazewm={output.glazewm} />}
       </div>
-      <div class="group" id="group-bottom">
+      <div className="group" id="group-bottom">
         {output.media && <Media media={output.media} />}
         {/*{output.glazewm && <GlazewmStatus glazewm={output.glazewm} />}*/}
         {output.cpu && <Cpu cpu={output.cpu} />}
@@ -49,3 +47,5 @@ function App() {
     </div>
   );
 }
+
+export default App;

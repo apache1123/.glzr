@@ -1,29 +1,29 @@
-import { createEffect, createSignal } from "solid-js";
 import "./date-time.css";
 import dayjs from "dayjs";
 import { DateOutput } from "zebar";
+import { useEffect, useState } from "react";
 
 export interface DateTimeProps {
   date: DateOutput;
 }
 
-export function DateTime(props: DateTimeProps) {
-  const [now, setNow] = createSignal(dayjs());
+export function DateTime({ date }: DateTimeProps) {
+  const [now, setNow] = useState(dayjs());
 
-  createEffect(() => {
-    setNow(dayjs(props.date.new));
-  });
+  useEffect(() => {
+    setNow(dayjs(date.new));
+  }, [date.new]);
 
   return (
     <>
       <div id="time">
-        <span>{now().format("hh")}</span>
-        <span>{now().format("mm")}</span>
-        <div id="meridiem">{now().format("A")}</div>
+        <span>{now.format("hh")}</span>
+        <span>{now.format("mm")}</span>
+        <div id="meridiem">{now.format("A")}</div>
       </div>
       <div id="date">
-        <div>{now().format("ddd")}</div>
-        <div>{now().format("D MMM")}</div>
+        <div>{now.format("ddd")}</div>
+        <div>{now.format("D MMM")}</div>
       </div>
     </>
   );

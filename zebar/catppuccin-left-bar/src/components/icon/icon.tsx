@@ -2,6 +2,6 @@ export interface IconProps {
   iconClass: string;
 }
 
-export function Icon(props: IconProps) {
-  return <i class={`nf ${props.iconClass}`}></i>;
+export function Icon({ iconClass }: IconProps) {
+  return <i className={`nf ${iconClass}`}></i>;
 }

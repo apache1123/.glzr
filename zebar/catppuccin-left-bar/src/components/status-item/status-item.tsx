@@ -1,16 +1,16 @@
-import { ParentProps } from "solid-js";
 import "./status-item.css";
 import { Icon } from "../icon/icon";
+import { PropsWithChildren } from "react";
 
-export type StatusItemProps = ParentProps<{
+export type StatusItemProps = PropsWithChildren<{
   iconClass: string;
 }>;
 
-export function StatusItem(props: StatusItemProps) {
+export function StatusItem({ iconClass, children }: StatusItemProps) {
   return (
-    <div class="status-item">
-      <Icon iconClass={props.iconClass} />
-      {props.children}
+    <div className="status-item">
+      <Icon iconClass={iconClass} />
+      {children}
     </div>
   );
 }

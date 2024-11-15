@@ -3,9 +3,14 @@
 html,
 body,
 #root {
-  height: 100%;
   font-family: "Ubuntu", "Noto Sans", "Segoe UI", monospace;
   font-size: 12px;
+  height: 100%;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   /* catppuccin frappe colors */
   --rosewater: hsl(10, 57%, 88%);
@@ -33,30 +38,31 @@ body,
 }
 
 .app {
-  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  color: var(--text);
-  user-select: none;
+  flex-direction: column;
+  height: 100%;
   padding: 30px 5px;
+  user-select: none;
+  color: var(--text);
   border-right: 1px solid var(--crust);
   background: color-mix(in hsl, var(--base) 95%, transparent);
 }
 
 .group {
-  width: 100%;
-  flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
 
   /* Assuming the immediate children are widgets */
+
   > * {
-    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
+    width: 100%;
 
     &:not(:first-child) {
       margin-top: 20px;

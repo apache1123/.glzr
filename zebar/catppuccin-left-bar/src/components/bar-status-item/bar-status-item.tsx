@@ -1,20 +1,28 @@
-import { JSXElement } from "solid-js";
 import "./bar-status-item.css";
 import { StatusItem } from "../status-item/status-item";
+import { ReactNode } from "react";
+import classNames from "classnames";
 
 export interface BarStatusItemProps {
   iconClass: string;
-  bars: JSXElement;
+  bars: ReactNode;
   isHighUsage?: boolean;
 }
 
-export function BarStatusItem(props: BarStatusItemProps) {
+export function BarStatusItem({
+  iconClass,
+  bars,
+  isHighUsage,
+}: BarStatusItemProps) {
   return (
     <div
-      classList={{ "bar-status-item": true, "high-usage": props.isHighUsage }}
+      className={classNames({
+        "bar-status-item": true,
+        "high-usage": isHighUsage,
+      })}
     >
-      <StatusItem iconClass={props.iconClass}>
-        <div class="bar-group">{props.bars}</div>
+      <StatusItem iconClass={iconClass}>
+        <div className="bar-group">{bars}</div>
       </StatusItem>
     </div>
   );

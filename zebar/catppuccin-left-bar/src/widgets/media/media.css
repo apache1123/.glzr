@@ -16,6 +16,11 @@
   text-overflow: ellipsis;
 }
 
+#media-title {
+  min-width: 50px;
+  margin-right: 20px;
+}
+
 #media-artist {
   margin-top: 2px;
   color: var(--overlay-2);

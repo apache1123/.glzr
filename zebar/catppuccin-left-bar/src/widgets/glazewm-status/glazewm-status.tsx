@@ -1,4 +1,3 @@
-import { For, Show } from "solid-js";
 import { Icon } from "../../components/icon/icon";
 import { GlazeWmOutput } from "zebar";
 
@@ -6,20 +5,17 @@ export interface GlazewmStatusProps {
   glazewm: GlazeWmOutput;
 }
 
-export function GlazewmStatus(props: GlazewmStatusProps) {
+export function GlazewmStatus({ glazewm }: GlazewmStatusProps) {
   return (
     <>
-      <For each={props.glazewm.bindingModes}>
-        {(bindingMode) => (
-          <div>{bindingMode.displayName ?? bindingMode.name}</div>
-        )}
-      </For>
-      <Show
-        when={props.glazewm.tilingDirection === "horizontal"}
-        fallback={<Icon iconClass="nf-md-swap_vertical" />}
-      >
+      {glazewm.bindingModes.map((bindingMode) => (
+        <div>{bindingMode.displayName ?? bindingMode.name}</div>
+      ))}
+      {glazewm.tilingDirection === "horizontal" ? (
         <Icon iconClass="nf-md-swap_horizontal" />
-      </Show>
+      ) : (
+        <Icon iconClass="nf-md-swap_vertical" />
+      )}
     </>
   );
 }
