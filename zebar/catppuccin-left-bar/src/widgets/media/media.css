@@ -20,6 +20,7 @@
   overflow: hidden;
   width: 100%;
   text-align: center;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -29,6 +30,7 @@
 }
 
 #media-artist {
-  max-height: 23px; /* about 2 lines */
+  font-size: 0.75rem;
+  max-height: 12px; /* about 1 line */
   margin-top: 2px;
 }
