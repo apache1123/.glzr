@@ -10,7 +10,7 @@ export interface MediaProps {
 
 export function Media({ media: { session } }: MediaProps) {
   const isPlaying = !!session?.isPlaying;
-  const playingIconClass = isPlaying ? "nf-fa-play" : "nf-fa-pause";
+  const playingIconClass = isPlaying ? "nf-fa-itunes_note" : "nf-fa-pause";
 
   return (
     session && (
