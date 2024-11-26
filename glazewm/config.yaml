@@ -144,6 +144,7 @@ window_rules:
         window_class: { regex: 'HwndWrapper*' }
       - window_process: { regex: '.*PotPlayer.*' }
       - window_title: { regex: '.*GoogleDriveFS.*' }
+      - window_process: { regex: 'wfcUI' } # Malwarebytes Windows Firewall Control
 
   - commands: ['set-floating']
     match:
