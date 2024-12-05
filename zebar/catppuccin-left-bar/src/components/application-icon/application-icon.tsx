@@ -11,6 +11,7 @@ const iconsByProcessName = {
   mpvnet: "nf-linux-mpv",
   QRSL: "nf-md-gamepad_variant",
   webstorm64: "nf-fa-code",
+  anki: "nf-md-card_text",
 };
 
 export interface ApplicationIconProps {
