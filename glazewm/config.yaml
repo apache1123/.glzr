@@ -22,7 +22,7 @@ general:
   # The method to use when hiding windows.
   # - 'cloak'
   # - 'hide' (legacy)
-  hide_method: 'hide'
+  hide_method: 'cloak'
 
 gaps:
   # Gap between adjacent windows.
@@ -145,6 +145,7 @@ window_rules:
       - window_process: { regex: '.*PotPlayer.*' }
       - window_title: { regex: '.*GoogleDriveFS.*' }
       - window_process: { regex: 'wfcUI' } # Malwarebytes Windows Firewall Control
+      - window_title: { regex: 'Path of Exile 2' }
 
   - commands: ['set-floating']
     match:
@@ -184,13 +185,6 @@ binding_modes:
   #       - commands: ['wm-disable-binding-mode --name resize']
   #         bindings: ['escape', 'enter']
 
-  # When enabled, all keybindings are disabled except for alt+shift+p which
-  # returns to default keybindings.
-  - name: 'pause'
-    keybindings:
-      - commands: ['wm-disable-binding-mode --name pause']
-        bindings: ['alt+shift+p']
-
 keybindings:
   # Shift focus in a given direction.
   - commands: ['focus --direction left']
@@ -228,8 +222,9 @@ keybindings:
   # - commands: ['wm-enable-binding-mode --name resize']
   #   bindings: ['alt+r']
 
-  # Disables all keybindings until alt+shift+p is pressed again.
-  - commands: ['wm-enable-binding-mode --name pause']
+  # Disables window management and all other keybindings until alt+shift+p
+  # is pressed again.
+  - commands: ['wm-toggle-pause']
     bindings: ['alt+shift+p']
 
   # Change tiling direction. This determines where new tiling windows will
