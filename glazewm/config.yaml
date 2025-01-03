@@ -146,6 +146,8 @@ window_rules:
       - window_title: { regex: '.*GoogleDriveFS.*' }
       - window_process: { regex: 'wfcUI' } # Malwarebytes Windows Firewall Control
       - window_title: { regex: 'Path of Exile 2' }
+      - window_process: { equals: 'ReadyOrNot-Win64-Shipping' }
+      - window_process: { equals: 'QRSL' }
 
   - commands: ['set-floating']
     match:
